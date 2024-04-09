@@ -19,7 +19,7 @@ function createMainWindow() {
     });
     mainWindow.maximize()
 
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     const startUrl = url.format({
         pathname: path.join(__dirname, './app/build/index.html'),
