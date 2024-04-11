@@ -2,6 +2,8 @@ const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const url = require('url');
 const path = require('path');
 const fs = require('fs');
+const { isScreenSharingSoftwareDetected } = require('./detectScreenSharing'); // Import the screen sharing detection function
+
 
 let mainWindow;
 
@@ -19,7 +21,7 @@ function createMainWindow() {
     });
     mainWindow.maximize()
 
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     const startUrl = url.format({
         pathname: path.join(__dirname, './app/build/index.html'),
@@ -29,8 +31,23 @@ function createMainWindow() {
     mainWindow.loadURL('http://localhost:3000');
     // mainWindow.loadURL(startUrl);
 }
+ipcMain.on('check-screen-sharing', async (event) => {
+
+
+
+    // Check for screen sharing software
+
+
+    const isScreenSharingDetected = await isScreenSharingSoftwareDetected();
+
+
+    // Send the result to the renderer process
+    console.log("Is screen sharing software detected", isScreenSharingDetected);
+    event.reply('screen-sharing-result', isScreenSharingDetected);
+});
 
 ipcMain.on('open-url-fullscreen', (event, url) => {
+
     const fullscreenWindow = new BrowserWindow({
 
         alwaysOnTop: true,
@@ -112,7 +129,9 @@ ipcMain.on('open-url-fullscreen', (event, url) => {
 
     fullscreenWindow.loadURL(url);
 
+
     // console.log("hello"+url);
 });
+
 
 app.whenReady().then(createMainWindow);
