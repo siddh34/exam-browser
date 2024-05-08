@@ -75,7 +75,7 @@ function App() {
               <div className={`${isTyping ? `scale-75 -translate-y-10` : `scale-100`} duration-300`}>
                 <Lottie style={{ borderRadius: 10 }} options={options} />
               </div>
-              <div className={`${isTyping ? `scale-125 -translate-y-14 ` : `scale-100`} w-2/6 h-full text-wrap  mt-6 duration-300`}>
+              <div className={`${isTyping ? `scale-125 -translate-y-14 ` : `scale-100`}  w-full h-full text-wrap  mt-6 duration-300`}>
                 <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
@@ -88,6 +88,7 @@ function App() {
 
 
                   <button className="text-white absolute end-2.5 bottom-2.5 bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-2 " onClick={handleSearch}>Start Exam</button>
+
                 </div>
               </div>
             </div>
