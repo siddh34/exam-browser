@@ -21,7 +21,7 @@ function createMainWindow() {
     });
     mainWindow.maximize()
 
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     const startUrl = url.format({
         pathname: path.join(__dirname, './app/build/index.html'),
@@ -42,7 +42,8 @@ ipcMain.on('check-screen-sharing', async (event) => {
 
 
     // Send the result to the renderer process
-    console.log("Is screen sharing software detected", isScreenSharingDetected);
+    // console.log("Is screen sharing software detected", isScreenSharingDetected);
+
     event.reply('screen-sharing-result', isScreenSharingDetected);
 });
 
@@ -57,6 +58,7 @@ ipcMain.on('open-url-fullscreen', (event, url) => {
         frame: false,
         webPreferences: {
             nodeIntegration: true
+
         }
     });
 
@@ -106,7 +108,7 @@ ipcMain.on('open-url-fullscreen', (event, url) => {
         closeButton.style.backgroundColor = '#000000';
         closeButton.style.color = '#ffffff';
         closeButton.style.boxShadow = '0px 2px 4px rgba(0, 0, 0, 0.2)'; // Add shadow
-        
+
 
         const handleMouseEnter = () => {
             closeButton.style.backgroundColor = '#FF0000'; // Change background color on hover
@@ -118,19 +120,19 @@ ipcMain.on('open-url-fullscreen', (event, url) => {
 
         closeButton.addEventListener('mouseenter', handleMouseEnter);
         closeButton.addEventListener('mouseleave', handleMouseLeave);
-            
+
         closeButton.addEventListener('click', () => {
             window.close();
         });
         document.body.appendChild(closeButton);
         `);
+
+
     });
-
-
     fullscreenWindow.loadURL(url);
 
 
-    // console.log("hello"+url);
+
 });
 
 

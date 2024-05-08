@@ -63,7 +63,7 @@ function App() {
 
               <div className="ms-5 mt-2 text-sm">
 
-                <p > Detected (e.g., AnyDesk, TeamViewer). </p>
+                <p > Detected (AnyDesk, TeamViewer,etc.). </p>
                 <p> Please close them and reopen this app.</p>
               </div>
 
